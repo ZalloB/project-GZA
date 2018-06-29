@@ -11,6 +11,7 @@ public class CitizenBehaviour : MonoBehaviour {
     private float distance;
     private Transform startTransform;
     private NavMeshAgent myNMAgent;
+    public GameObject zombie;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +29,9 @@ public class CitizenBehaviour : MonoBehaviour {
     public void Zombified() //Zombie bites a citizen.
     {
         StartCoroutine(DyingSequence());
-        //TODO Instantiate a zombie in this position.
+
+        Instantiate(zombie, this.transform.position, this.transform.rotation);
+
     }
 
     public void Flee()

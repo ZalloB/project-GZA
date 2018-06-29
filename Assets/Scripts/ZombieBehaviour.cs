@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ZombieBehaviour : MonoBehaviour {
 
-    public int health;
+    private int health;
+    public GameObject[] loot;
 
-
-
-	void Start () {
-        health = 10;
+    void Start () {
+        health = 100;
 
 	}
 
-    public void Hit()
+    public void Hit(int damage)
     {
-        health--;
+        health -= damage;
 
         if (health <= 0)
         {
+            Instantiate(loot[UnityEngine.Random.Range(0, loot.Length)], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             StartCoroutine(DyingSequence());
         }
         else
@@ -26,6 +26,10 @@ public class ZombieBehaviour : MonoBehaviour {
             //TODO damage sound
             //TODO damage animation
         }
+    }
+
+    public void Kill(){
+        StartCoroutine(DyingSequence());
     }
 
     IEnumerator DyingSequence()

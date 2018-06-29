@@ -9,6 +9,8 @@ TagManager:
   - WayPoint
   - Car
   - CarPoint
+  - Medkit
+  - AmmoBox
   layers:
   - Default
   - TransparentFX
