@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private int maxMagazine;
     private int totalAmmo;
     private int damage;
+    public new Camera camera;
 
 	void Start () {
         life = 100;
@@ -24,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour {
         Shoot();
         Reload();
         Melee();
-	}
+    }
 
 
     public void Hit()
@@ -53,7 +54,10 @@ public class PlayerBehaviour : MonoBehaviour {
             {
                 magazine--;
                 StartCoroutine(RangedAttack());
-                if (Physics.Raycast(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1f, this.gameObject.transform.position.z), this.gameObject.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask) && (hit.collider.gameObject.tag.Equals("Zombie") || hit.collider.gameObject.tag.Equals("Citizen")))
+
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit) && (hit.collider.gameObject.tag.Equals("Zombie") || hit.collider.gameObject.tag.Equals("Citizen")))
                 {
                     if (hit.collider.gameObject.tag.Equals("Citizen"))
                         hit.collider.gameObject.GetComponent<CitizenBehaviour>().Hit();
@@ -118,7 +122,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     public void Reload()
     {
-        if (Input.GetKeyDown("R"))
+        if (Input.GetKeyDown("r"))
         {
             if (magazine < maxMagazine  && totalAmmo > 0)
             {

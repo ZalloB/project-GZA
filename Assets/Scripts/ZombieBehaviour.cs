@@ -18,7 +18,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
         if (health <= 0)
         {
-            Instantiate(loot[UnityEngine.Random.Range(0, loot.Length)], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+            Instantiate(loot[Random.Range(0, loot.Length)], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             StartCoroutine(DyingSequence());
         }
         else
