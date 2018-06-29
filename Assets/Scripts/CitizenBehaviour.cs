@@ -11,10 +11,13 @@ public class CitizenBehaviour : MonoBehaviour {
     private float distance;
     private Transform startTransform;
     private NavMeshAgent myNMAgent;
+    public GameObject zombie;
+    private bool isZombified;
 
 	// Use this for initialization
 	void Start () {
 
+        isZombified = false;
         myNMAgent = this.GetComponent<NavMeshAgent>();
 
     }
@@ -27,8 +30,14 @@ public class CitizenBehaviour : MonoBehaviour {
 
     public void Zombified() //Zombie bites a citizen.
     {
-        StartCoroutine(DyingSequence());
-        //TODO Instantiate a zombie in this position.
+
+        Destroy(this.gameObject);
+        if (!isZombified)
+        Instantiate(zombie, this.transform.position, this.transform.rotation);
+
+        isZombified = true;
+
+
     }
 
     public void Flee()
