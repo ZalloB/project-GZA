@@ -11,8 +11,16 @@ public class PlayerBehaviour : MonoBehaviour {
     private int totalAmmo;
     private int damage;
     public new Camera camera;
+    public AudioSource audioSource;
+
+    public AudioClip reload;
+    public AudioClip noAmmo;
+    public AudioClip shot;
+    public AudioClip melee;
+
 
 	void Start () {
+        audioSource = gameObject.GetComponent<AudioSource>();
         life = 100;
         magazine = 30;
         maxMagazine = 30;
@@ -52,6 +60,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
             if (magazine > 0)
             {
+                audioSource.PlayOneShot(shot, 0.7f);
                 magazine--;
                 StartCoroutine(RangedAttack());
 
@@ -64,6 +73,9 @@ public class PlayerBehaviour : MonoBehaviour {
                     if (hit.collider.gameObject.tag.Equals("Zombie"))
                         hit.collider.gameObject.GetComponent<ZombieBehaviour>().Hit(damage);
                 }
+            }else
+            {
+                audioSource.PlayOneShot(noAmmo, 0.7f);
             }
         }
     }
@@ -78,6 +90,15 @@ public class PlayerBehaviour : MonoBehaviour {
             }else if (other.gameObject.tag.Equals("Zombie"))
             {
                 other.gameObject.GetComponent<ZombieBehaviour>().Kill();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (other.gameObject.tag.Equals("Car"))
+            {
+                other.gameObject.GetComponent<CarBehaviour>().PlayerEnters();
+                Destroy(this.gameObject);
             }
         }
     }
@@ -116,7 +137,11 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void Melee()
     {
-        //melee animation
+        if (Input.GetMouseButtonDown(1))
+        {
+            audioSource.PlayOneShot(melee, 0.7f);
+            //TODO melee animation
+        }
     }
 
 
@@ -126,6 +151,7 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             if (magazine < maxMagazine  && totalAmmo > 0)
             {
+                audioSource.PlayOneShot(reload, 0.7f);
                 totalAmmo += magazine;
                 magazine = 0;
                 if (totalAmmo <= maxMagazine)
