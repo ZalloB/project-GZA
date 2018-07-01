@@ -58,7 +58,7 @@ MonoBehaviour:
     id=\"9\" />\r\n          <ActionNode id=\"3\" />\r\n          <ActionNode id=\"4\"
     />\r\n          <SequenceNode id=\"5\" />\r\n          <RepeatDecorator id=\"6\"
     />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator
-    id=\"6\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    id=\"6\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
     position=\"462.375 90\" name=\"Repeat\" description=\"Repeats the execution of
     its child node\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <RepeatDecorator id=\"6\" />\r\n        </data>\r\n      </_data>\r\n
@@ -74,7 +74,7 @@ MonoBehaviour:
     \         <BehaviorTree id=\"0\" />\r\n          <ConditionNode id=\"9\" />\r\n
     \         <SequenceNode id=\"5\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionNode>\r\n
     \   <ActionNode id=\"3\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"414.375 389.35\" name=\"Physics/FromMouseToWorld\" description=\"Gets
+    position=\"415.375 388.35\" name=\"Physics/FromMouseToWorld\" description=\"Gets
     the game object and position that is under the mouse cursor\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"3\" />\r\n          <SequenceNode id=\"5\" />\r\n        </data>\r\n      </_data>\r\n

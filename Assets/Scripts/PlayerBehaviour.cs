@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
@@ -21,7 +22,9 @@ public class PlayerBehaviour : MonoBehaviour {
     public GameObject shotgunSite;
     public GameObject SMGSite;
     public GameObject PistolSite;
+    public Image health;
 
+    public Text ammoText;
 
 	void Start () {
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -32,13 +35,18 @@ public class PlayerBehaviour : MonoBehaviour {
         maxMagazine = 30;
         totalAmmo = 60;
         damage = 10;
+        ammoText.text = magazine + " / " + totalAmmo;
 
 	}
 
 	void Update () {
+        health.fillAmount = life / 100;
+        Debug.Log(life);
         Shoot();
         Reload();
         Melee();
+        ammoText.text = magazine + " / " + totalAmmo;
+
     }
 
 
@@ -146,6 +154,22 @@ public class PlayerBehaviour : MonoBehaviour {
             totalAmmo = 60;
             damage = 10;
         }
+
+
+        if (other.gameObject.tag.Equals("Medkit"))
+        {
+            RefillHealth();
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag.Equals("AmmoBox"))
+        {
+            RefillAmmo();
+            Destroy(other.gameObject);
+        }
+
+
+
     }
 
     private void Melee()
@@ -191,8 +215,11 @@ public class PlayerBehaviour : MonoBehaviour {
         life += 20;
         if (life > 100)
             life = 100;
-
     }
+
+
+
+
 
     IEnumerator RangedAttack()
     {
