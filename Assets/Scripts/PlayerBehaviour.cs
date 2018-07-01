@@ -18,9 +18,15 @@ public class PlayerBehaviour : MonoBehaviour {
     public AudioClip shot;
     public AudioClip melee;
 
+    public GameObject shotgunSite;
+    public GameObject SMGSite;
+    public GameObject PistolSite;
+
 
 	void Start () {
         audioSource = gameObject.GetComponent<AudioSource>();
+        PistolSite.SetActive(false);
+        shotgunSite.SetActive(false);
         life = 100;
         magazine = 30;
         maxMagazine = 30;
@@ -107,7 +113,10 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Shotgun"))
         {
-            //TODO añadir objeto escopeta al modelo.
+            Debug.Log("Shotgun Selected");
+            shotgunSite.SetActive(true);
+            SMGSite.SetActive(false);
+            PistolSite.SetActive(false);
             magazine = 2;
             maxMagazine = 2;
             totalAmmo = 6;
@@ -117,7 +126,9 @@ public class PlayerBehaviour : MonoBehaviour {
 
         if (other.gameObject.tag.Equals("Pistol"))
         {
-            //TODO añadir objeto pistola al modelo
+            shotgunSite.SetActive(false);
+            SMGSite.SetActive(false);
+            PistolSite.SetActive(true);
             magazine = 6;
             maxMagazine = 6;
             totalAmmo = 18;
@@ -127,7 +138,9 @@ public class PlayerBehaviour : MonoBehaviour {
 
         if (other.gameObject.tag.Equals("SMG"))
         {
-            //TODO añadir objeto SMG al modelo
+            shotgunSite.SetActive(false);
+            SMGSite.SetActive(true);
+            PistolSite.SetActive(false);
             magazine = 30;
             maxMagazine = 30;
             totalAmmo = 60;

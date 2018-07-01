@@ -12,6 +12,9 @@ TagManager:
   - Medkit
   - AmmoBox
   - PoliceCar
+  - Shotgun
+  - SMG
+  - Pistol
   layers:
   - Default
   - TransparentFX
