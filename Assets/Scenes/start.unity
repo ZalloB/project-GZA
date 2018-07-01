@@ -239,11 +239,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 12917116}
---- !u!1 &55634090 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1964278969707606, guid: 736c8e212b9ad6e4aa6fd838575db860,
-    type: 2}
-  m_PrefabInternal: {fileID: 1250526724}
 --- !u!114 &55634091 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114768026414952804, guid: 736c8e212b9ad6e4aa6fd838575db860,
@@ -4002,15 +3997,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 55634090}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 55634091}
+        m_MethodName: LoadScreen
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4128,15 +4123,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 55634090}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 55634091}
+        m_MethodName: LoadScreen
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MultiplayerLobby
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
