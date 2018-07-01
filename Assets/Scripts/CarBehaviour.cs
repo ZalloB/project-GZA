@@ -84,6 +84,17 @@ public class CarBehaviour : MonoBehaviour {
 
     public void Brake() //Car stops if there is something ahead.
     {
-
+        navMeshAgent.SetDestination(gameObject.transform.position);
     }
+
+
+    public GameObject[] getCarPoints()
+    {
+
+        GameObject[] carPoints = GameObject.FindGameObjectsWithTag("CarPoint");
+
+        return carPoints;
+    }
+
+
 }

@@ -12,6 +12,15 @@ TagManager:
   - Medkit
   - AmmoBox
   - PoliceCar
+  - Shotgun
+  - SMG
+  - Pistol
+  - CarPoint1
+  - CarPoint2
+  - CarPoint3
+  - CarPoint4
+  - CarPoint5
+  - CarPoint6
   layers:
   - Default
   - TransparentFX

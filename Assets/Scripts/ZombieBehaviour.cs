@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieBehaviour : MonoBehaviour {
 
@@ -10,11 +11,21 @@ public class ZombieBehaviour : MonoBehaviour {
     public AudioClip hit;
     public AudioClip die;
 
+    float actualTimeBetweenBites = 0;
+    float timeBetweenBites = 2.0f;
+
+
+
     void Start () {
         audioSource = gameObject.GetComponent<AudioSource>();
         health = 100;
 
 	}
+
+    private void Update()
+    {
+        actualTimeBetweenBites += Time.deltaTime;
+    }
 
     public void Hit(int damage)
     {
@@ -22,6 +33,8 @@ public class ZombieBehaviour : MonoBehaviour {
 
         if (health <= 0)
         {
+
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             Instantiate(loot[Random.Range(0, loot.Length)], new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
             StartCoroutine(DyingSequence());
         }
@@ -49,5 +62,20 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Car"))
             Kill();
+
+
+
+        if (other.gameObject.tag.Equals("Player")  && health > 0)
+        {
+
+            if (actualTimeBetweenBites > timeBetweenBites)
+            {
+
+                actualTimeBetweenBites = 0;
+                other.gameObject.GetComponent<PlayerBehaviour>().Hit();
+
+            }
+        }
+
     }
 }
