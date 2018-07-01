@@ -14,10 +14,17 @@ public class CitizenBehaviour : MonoBehaviour {
     public GameObject zombie;
     private bool isZombified;
 
-	// Use this for initialization
+    public AudioSource audiosource;
+    public AudioClip hurt;
+    public AudioClip help;
+    public bool yelling;
+
+
 	void Start () {
 
+        audiosource = gameObject.GetComponent<AudioSource>();
         isZombified = false;
+        yelling = false;
         myNMAgent = this.GetComponent<NavMeshAgent>();
 
     }
@@ -42,9 +49,10 @@ public class CitizenBehaviour : MonoBehaviour {
 
     public void Flee()
     {
-        Debug.Log("Corre pequeño, HUYE");
         nearestZombie = getClosestEnemy();
 
+        if (!yelling)
+        StartCoroutine(HelpMeSound());
 
         startTransform = transform;
         transform.rotation = Quaternion.LookRotation(transform.position - nearestZombie.transform.position);
@@ -58,6 +66,16 @@ public class CitizenBehaviour : MonoBehaviour {
         myNMAgent.SetDestination(hit.position);
 
 
+    }
+
+
+    IEnumerator HelpMeSound()
+    {
+        audiosource.PlayOneShot(help, 0.7f);
+
+        yelling = true;
+        yield return new WaitForSeconds(2.0f);
+        yelling = false;
     }
 
     private GameObject getClosestEnemy()
@@ -84,7 +102,8 @@ public class CitizenBehaviour : MonoBehaviour {
 
     IEnumerator DyingSequence()
     {
-        //TODO DyingSound
+        audiosource.PlayOneShot(hurt, 0.7f);
+
         //TODO Dying animation
         yield return new WaitForSeconds(3.0f);
         Destroy(this.gameObject);

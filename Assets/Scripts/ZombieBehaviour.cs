@@ -6,8 +6,12 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private int health;
     public GameObject[] loot;
+    public AudioSource audioSource;
+    public AudioClip hit;
+    public AudioClip die;
 
     void Start () {
+        audioSource = gameObject.GetComponent<AudioSource>();
         health = 100;
 
 	}
@@ -23,7 +27,7 @@ public class ZombieBehaviour : MonoBehaviour {
         }
         else
         {
-            //TODO damage sound
+            audioSource.PlayOneShot(hit, 0.7f);
             //TODO damage animation
         }
     }
@@ -34,10 +38,16 @@ public class ZombieBehaviour : MonoBehaviour {
 
     IEnumerator DyingSequence()
     {
-        //TODO dyingsound
+        audioSource.PlayOneShot(die, 0.7f);
         //TODO dyingAnimation
         yield return new WaitForSeconds(3.0f);
         Destroy(this.gameObject);
     }
 
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Car"))
+            Kill();
+    }
 }
