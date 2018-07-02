@@ -21,6 +21,8 @@ TagManager:
   - CarPoint4
   - CarPoint5
   - CarPoint6
+  - HealthBar
+  - BulletText
   layers:
   - Default
   - TransparentFX
